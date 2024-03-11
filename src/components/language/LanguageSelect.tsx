@@ -30,7 +30,7 @@ const LanguageSelect = ({
 
   // Render
   return (
-    <div>
+    <div className="section">
       <label>
         Language
         <Select

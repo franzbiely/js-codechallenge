@@ -28,7 +28,7 @@ const CurrencySelect = ({
 
   // Render
   return (
-    <div>
+    <div className="section">
       <label>
         Currency
         <Select

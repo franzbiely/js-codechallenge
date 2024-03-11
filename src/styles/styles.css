@@ -1,7 +1,47 @@
+.section {
+  margin-top: 15px;
+}
+
 .button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 10px;
-    gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  gap: 10px;
+}
+.button-primary {
+  padding: 5px 10px;
+  border: none;
+}
+
+.button-primary,
+.button-save {
+  background-color: #007fff;
+  color: #fff;
+}
+
+.button-cancel,
+.button-save {
+  padding: 5px;
+  width: 80px;
+  border: none;
+  border-radius: 4px;
+}
+
+.button-cancel {
+  background-color: #cecece;
+  color: #000;
+}
+@media (max-width: 300px) {
+  .button {
+    flex-direction: column;
   }
+
+  .button-cancel,
+  .button-save {
+    padding: 5px;
+    width: 100%;
+    border: none;
+    border-radius: 4px;
+  }
+}

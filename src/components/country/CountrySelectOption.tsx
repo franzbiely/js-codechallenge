@@ -27,7 +27,7 @@ export const CountrySelectOption = (props: OptionProps<CountrySelectOptionInterf
   const value = props.data.value;
   const flagUrl = `${FLAG_ICON_BASE_URL}${value}.svg`;
   return (
-    <div style={{flexDirection: 'row', display: 'flex'}}>
+    <div style={{ flexDirection: "row", display: "flex", paddingLeft: 10 }}>
       {flagUrl && <img src={flagUrl} alt={props.label} style={{ width: 20, marginRight: 10 }} />}
       <components.Option {...props} />
     </div>

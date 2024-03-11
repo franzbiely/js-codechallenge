@@ -168,8 +168,8 @@ const SettingsSelector = (): JSX.Element => {
 
         {/* Close button */}
         <div className="button">
-          <button onClick={handleClose}>Cancel</button>
-          <button onClick={handleSave}>Save</button>
+          <button className="button-cancel" onClick={handleClose}>Cancel</button>
+          <button className="button-save" onClick={handleSave}>Save</button>
         </div>
       </Modal>
     </div>

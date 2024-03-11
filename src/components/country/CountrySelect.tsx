@@ -1,6 +1,6 @@
 import countries from "i18n-iso-countries";
-import { useRef, useState } from "react";
-import Select, { GroupBase, OptionProps } from "react-select";
+import { useState } from "react";
+import Select from "react-select";
 import { DEFAULT_COUNTRY } from "../../config";
 import { Country, CountrySelectOptionInterface, CountrySelectProps } from "../../types/country-types";
 import { CountryInput } from "./CountryInput";
@@ -11,13 +11,10 @@ countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
 const COUNTRIES_VALUE_KEY = 0;
 const COUNTRIES_LABEL_KEY = 1;
 
-
-
 export const CountrySelect = ({
   value = DEFAULT_COUNTRY,
   onChange,
 }: CountrySelectProps) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   
   const arrCountry = Object.entries(
     countries.getNames("en", { select: "official" })
@@ -32,7 +29,7 @@ export const CountrySelect = ({
   const defaultValue = { value: value.code, label: value.name };
   
   return (
-    <div>
+    <div className="section">
       <label>
         Country
         <Select

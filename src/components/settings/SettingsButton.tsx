@@ -20,7 +20,7 @@ const SettingsButton: React.FC<SettingsButtonProps> = ({ handleOpen, country, cu
     console.log("Render count of button is: " + counter.current);
   
     return (
-      <button onClick={handleOpen}>
+      <button className="button-primary" onClick={handleOpen}>
         {country.name} - ({currency} - {language})
       </button>
     );
