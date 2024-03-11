@@ -1,20 +1,19 @@
 import countries from "i18n-iso-countries";
+import { useRef, useState } from "react";
 import Select, { GroupBase, OptionProps } from "react-select";
+import { CountrySelectOptionInterface } from "../../types/country-types";
+import { CountryInput } from "./CountryInput";
 import { CountrySelectOption } from "./CountrySelectOption";
 
 countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
 
 const COUNTRIES_VALUE_KEY = 0;
 const COUNTRIES_LABEL_KEY = 1;
-
 interface Country {
   code: string;
   name: string;
 }
-interface CountrySelectOptionInterface {
-  value: string;
-  label: string;
-}
+
 
 interface CountrySelectProps {
   value?: Country;
@@ -30,23 +29,31 @@ export const CountrySelect = ({
   value = DEFAULT_COUNTRY,
   onChange,
 }: CountrySelectProps) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  
   const arrCountry = Object.entries(
     countries.getNames("en", { select: "official" })
   );
   const data: CountrySelectOptionInterface[] = arrCountry.map((country) => {
+    
     return {
       value: country[COUNTRIES_VALUE_KEY],
-      label: country[COUNTRIES_LABEL_KEY]
+      label: country[COUNTRIES_LABEL_KEY],
     }
   })
   const defaultValue = { value: value.code, label: value.name };
+  
   return (
     <div>
       <label>
         Country
         <Select
+          openMenuOnClick
           options={data}
-          components={{ Option: CountrySelectOption }}
+          components={{ 
+            Option: CountrySelectOption,
+            Control: CountryInput
+          }}
           defaultValue={defaultValue}
           onChange={(newValue) => {
             const newCountry: Country = {

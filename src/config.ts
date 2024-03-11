@@ -1,0 +1,1 @@
+export const FLAG_ICON_BASE_URL = 'https://catamphetamine.gitlab.io/country-flag-icons/3x2/';
