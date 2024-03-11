@@ -100,6 +100,9 @@ const SettingsSelector = (): JSX.Element => {
   const [selectedCountry, setCountry] = React.useState<any>(DEFAULT_COUNTRY);
   const [selectedCurrency, setCurrency] = React.useState<any>(DEFAULT_CURRENCY);
   const [selectedLanguage, setLanguage] = React.useState<any>(DEFAULT_LANGUAGE);
+  const [country, setselectedCountry] = React.useState<any>(DEFAULT_COUNTRY);
+  const [currency, setSelectedCurrency] = React.useState<any>(DEFAULT_CURRENCY);
+  const [language, setSelectedLanguage] = React.useState<any>(DEFAULT_LANGUAGE);
 
   // Render Counter
   const counter = useRef(0);
@@ -109,6 +112,12 @@ const SettingsSelector = (): JSX.Element => {
     setModalIsOpen(true);
   };
   const handleClose = () => {
+    setModalIsOpen(false);
+  };
+  const handleSave = () => {
+    setselectedCountry(selectedCountry);
+    setSelectedCurrency(selectedCurrency);
+    setSelectedLanguage(selectedLanguage);
     setModalIsOpen(false);
   };
 
@@ -122,7 +131,7 @@ const SettingsSelector = (): JSX.Element => {
     /* Button */
     return (
       <button onClick={handleOpen}>
-        {selectedCountry.name} - ({selectedCurrency} - {selectedLanguage})
+        {country.name} - ({currency} - {language})
       </button>
     );
   };
@@ -147,7 +156,8 @@ const SettingsSelector = (): JSX.Element => {
         <LanguageSelect language={selectedLanguage} onChange={setLanguage} />
 
         {/* Close button */}
-        <button onClick={handleClose}>Close</button>
+        <button onClick={handleClose}>Cancel</button>
+        <button onClick={handleSave}>Save</button>
       </Modal>
     </div>
   );
