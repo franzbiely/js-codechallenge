@@ -1,42 +1,45 @@
 import countries from "i18n-iso-countries";
-import Select from "react-select";
+import Select, { GroupBase, OptionProps } from "react-select";
 import { CountrySelectOption } from "./CountrySelectOption";
 
-// Register countries
 countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
 
-// --- TASK G ---
-// Please replace "any" with a proper type in this file (and where it is needed).
+const COUNTRIES_VALUE_KEY = 0;
+const COUNTRIES_LABEL_KEY = 1;
 
-// Props
-interface CountrySelectProps {
-  value?: any;
-  onChange?: (value: any) => void;
+interface Country {
+  code: string;
+  name: string;
+}
+interface CountrySelectOptionInterface {
+  value: string;
+  label: string;
 }
 
-// Constants
+interface CountrySelectProps {
+  value?: Country;
+  onChange?: (value: Country) => void;
+}
+
 export const DEFAULT_COUNTRY = {
   code: "US",
   name: "United States of America",
 };
 
-// Component
 export const CountrySelect = ({
   value = DEFAULT_COUNTRY,
   onChange,
 }: CountrySelectProps) => {
-  // Prepare Data
-  const data = Object.entries(
+  const arrCountry = Object.entries(
     countries.getNames("en", { select: "official" })
-  ).map(([code, name]) => {
+  );
+  const data: CountrySelectOptionInterface[] = arrCountry.map((country) => {
     return {
-      value: { code, name },
-      label: name,
-    };
-  });
-  const defaultValue = { value: value, label: value.name };
-
-  // Render
+      value: country[COUNTRIES_VALUE_KEY],
+      label: country[COUNTRIES_LABEL_KEY]
+    }
+  })
+  const defaultValue = { value: value.code, label: value.name };
   return (
     <div>
       <label>
@@ -46,8 +49,12 @@ export const CountrySelect = ({
           components={{ Option: CountrySelectOption }}
           defaultValue={defaultValue}
           onChange={(newValue) => {
+            const newCountry: Country = {
+              code: (newValue as CountrySelectOptionInterface)?.value,
+              name: (newValue as CountrySelectOptionInterface)?.label
+            }
             if(newValue!==null) {
-              onChange?.(newValue.value);
+              onChange?.(newCountry);
             }
           }}
         />
