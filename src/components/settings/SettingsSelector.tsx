@@ -101,7 +101,7 @@ FURTHER DETAILS
 const SettingsSelector = (): JSX.Element => {
   // States
   const [formData, setFormData] = useState<FormDataInterface>(DEFAULT_FORM_DATA)
-  const [modalIsOpen, setModalIsOpen] = React.useState<any>(false);
+  const [modalIsOpen, setModalIsOpen] = React.useState<boolean>(false);
 
   // Actions
   const handleOpen = (): void => {
