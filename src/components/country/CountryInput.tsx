@@ -1,5 +1,5 @@
-import React, {ComponentType, FC, useRef, useState} from 'react';
-import { ControlProps, InputProps } from 'react-select';
+import {ComponentType} from 'react';
+import { ControlProps } from 'react-select';
 import { FLAG_ICON_BASE_URL } from '../../config';
 
 export const CountryInput: ComponentType<

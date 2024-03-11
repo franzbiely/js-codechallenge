@@ -2,9 +2,6 @@ import CurrencyData from "currency-codes/data";
 import Select from "react-select";
 import { Currency, CurrencySelectOption } from "../../types/currency-types";
 
-// Interfaces
-
-
 // Props
 interface CurrencySelectProps {
   value?: string;

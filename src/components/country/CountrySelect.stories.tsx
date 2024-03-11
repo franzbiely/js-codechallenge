@@ -1,8 +1,6 @@
 import { Meta, StoryFn } from "@storybook/react";
-import { CountrySelectOptionInterface, CountrySelectProps } from "../../types/country-types";
-
+import { CountrySelectProps } from "../../types/country-types";
 import CountrySelect from "./CountrySelect";
-
 
 // Settings
 export default {

@@ -1,5 +1,4 @@
 import { Country } from "./country-types";
-
 export interface FormDataInterface {
   country: Country;
   currency: string;

@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { useRef } from "react";
 import { Country } from "../../types/country-types";
 
