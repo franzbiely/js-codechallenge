@@ -21,7 +21,7 @@ export const CountryInput: ComponentType<
       }}
     >
       {flagUrl && (
-        <img src={flagUrl} alt={value} style={{ width: 20, marginRight: 10 }} />
+        <img src={flagUrl} alt={value} style={{ width: 20, marginRight: 10 }} loading="lazy"/>
       )}
       {props.children}
     </div>
