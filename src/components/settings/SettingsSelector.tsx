@@ -1,9 +1,12 @@
-import React, { useMemo, useRef } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import Modal from "react-modal";
 import CountrySelect, { DEFAULT_COUNTRY } from "../country/CountrySelect";
 import LanguageSelect, { DEFAULT_LANGUAGE } from "../language/LanguageSelect";
 import CurrencySelect, { DEFAULT_CURRENCY } from "../currency/CurrencySelect";
 import SettingsButton from "./SettingsButton";
+import { Country } from "../../types/country-types";
+import { FormDataInterface } from "../../types/settings-types";
+import { DEFAULT_FORM_DATA } from "../../config";
 
 /* --- [TASK] ---
 Changes on modal are only applied on SAVE
@@ -95,16 +98,11 @@ FURTHER DETAILS
 --- [TASK] --- */
 
 // Component
+
 const SettingsSelector = (): JSX.Element => {
   // States
+  const [formData, setFormData] = useState<FormDataInterface>(DEFAULT_FORM_DATA)
   const [modalIsOpen, setModalIsOpen] = React.useState<any>(false);
-  const [selectedCountry, setCountry] = React.useState<any>(DEFAULT_COUNTRY);
-  const [selectedCurrency, setCurrency] = React.useState<any>(DEFAULT_CURRENCY);
-  const [selectedLanguage, setLanguage] = React.useState<any>(DEFAULT_LANGUAGE);
-  const [country, setselectedCountry] = React.useState<any>(DEFAULT_COUNTRY);
-  const [currency, setSelectedCurrency] = React.useState<any>(DEFAULT_CURRENCY);
-  const [language, setSelectedLanguage] = React.useState<any>(DEFAULT_LANGUAGE);
-
 
   // Actions
   const handleOpen = (): void => {
@@ -114,18 +112,27 @@ const SettingsSelector = (): JSX.Element => {
     setModalIsOpen(false);
   };
   const handleSave = () => {
-    setselectedCountry(selectedCountry);
-    setSelectedCurrency(selectedCurrency);
-    setSelectedLanguage(selectedLanguage);
+    const newFormData = {
+      ...formData,
+      country: formData.selectedCountry,
+      currency: formData.selectedCurrency,
+      language: formData.selectedLanguage
+    }
+    setFormData(newFormData)
+
     setModalIsOpen(false);
   };
 
   const renderSettingsButton = useMemo(() => (
     <SettingsButton handleOpen={handleOpen}
-        country={selectedCountry}
-        currency={selectedCurrency}
-        language={selectedLanguage} />
-  ), [selectedCountry, selectedCurrency, selectedLanguage])
+        country={formData.country}
+        currency={formData.currency}
+        language={formData.language} />
+  ), [
+      formData.country, 
+      formData.currency, 
+      formData.language
+  ])
   // Render
   return (
     <div>
@@ -136,13 +143,29 @@ const SettingsSelector = (): JSX.Element => {
         <h2>Select your region, currency and language.</h2>
 
         {/* Country */}
-        <CountrySelect value={selectedCountry} onChange={setCountry} />
+        <CountrySelect value={formData.selectedCountry} onChange={(data) => {
+          setFormData({
+            ...formData,
+            selectedCountry: data
+          })
+        }} />
 
         {/* Currency */}
-        <CurrencySelect value={selectedCurrency} onChange={setCurrency} />
+        <CurrencySelect value={formData.selectedCurrency} onChange={(data) => {
+          setFormData({
+            ...formData,
+            selectedCurrency: data
+          })
+        }} />
 
         {/* Language */}
-        <LanguageSelect language={selectedLanguage} onChange={setLanguage} />
+        <LanguageSelect language={formData.selectedLanguage} 
+         onChange={(data) => {
+          setFormData({
+            ...formData,
+            selectedLanguage: data
+          })
+        }} />
 
         {/* Close button */}
         <button onClick={handleClose}>Cancel</button>
