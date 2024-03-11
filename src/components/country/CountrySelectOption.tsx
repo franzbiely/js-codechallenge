@@ -1,5 +1,6 @@
 import { OptionProps, components } from "react-select";
 import { FLAG_ICON_BASE_URL } from "../../config";
+import { CountrySelectOptionInterface } from "../../types/country-types";
 
 /* --- [TASK] ---
 Country flags in select field
@@ -22,7 +23,7 @@ FURTHER DETAILS
 
 // Component
 
-export const CountrySelectOption = (props: OptionProps<any>) => {
+export const CountrySelectOption = (props: OptionProps<CountrySelectOptionInterface>) => {
   const value = props.data.value;
   const flagUrl = `${FLAG_ICON_BASE_URL}${value}.svg`;
   return (

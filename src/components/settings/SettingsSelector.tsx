@@ -1,10 +1,9 @@
-import React, { useMemo, useRef, useState } from "react";
+import React, { useMemo, useState } from "react";
 import Modal from "react-modal";
-import CountrySelect, { DEFAULT_COUNTRY } from "../country/CountrySelect";
-import LanguageSelect, { DEFAULT_LANGUAGE } from "../language/LanguageSelect";
-import CurrencySelect, { DEFAULT_CURRENCY } from "../currency/CurrencySelect";
+import CountrySelect from "../country/CountrySelect";
+import LanguageSelect from "../language/LanguageSelect";
+import CurrencySelect from "../currency/CurrencySelect";
 import SettingsButton from "./SettingsButton";
-import { Country } from "../../types/country-types";
 import { FormDataInterface } from "../../types/settings-types";
 import { DEFAULT_FORM_DATA } from "../../config";
 

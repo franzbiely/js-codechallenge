@@ -1,12 +1,8 @@
 import ISO_6391_Languages from "iso-639-1";
 
 import Select from "react-select";
+import { LanguageSelectProps } from "../../types/language-types";
 
-// Props
-interface LanguageSelectProps {
-  language?: string;
-  onChange?: (language: string) => void;
-}
 
 // Constants
 export const DEFAULT_LANGUAGE = "English - English";

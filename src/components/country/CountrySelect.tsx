@@ -1,7 +1,8 @@
 import countries from "i18n-iso-countries";
 import { useRef, useState } from "react";
 import Select, { GroupBase, OptionProps } from "react-select";
-import { Country, CountrySelectOptionInterface } from "../../types/country-types";
+import { DEFAULT_COUNTRY } from "../../config";
+import { Country, CountrySelectOptionInterface, CountrySelectProps } from "../../types/country-types";
 import { CountryInput } from "./CountryInput";
 import { CountrySelectOption } from "./CountrySelectOption";
 
@@ -11,16 +12,6 @@ const COUNTRIES_VALUE_KEY = 0;
 const COUNTRIES_LABEL_KEY = 1;
 
 
-
-interface CountrySelectProps {
-  value?: Country;
-  onChange?: (value: Country) => void;
-}
-
-export const DEFAULT_COUNTRY = {
-  code: "US",
-  name: "United States of America",
-};
 
 export const CountrySelect = ({
   value = DEFAULT_COUNTRY,
