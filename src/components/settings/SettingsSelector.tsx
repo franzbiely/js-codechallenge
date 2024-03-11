@@ -1,8 +1,9 @@
-import React, { useRef } from "react";
+import React, { useMemo, useRef } from "react";
 import Modal from "react-modal";
 import CountrySelect, { DEFAULT_COUNTRY } from "../country/CountrySelect";
 import LanguageSelect, { DEFAULT_LANGUAGE } from "../language/LanguageSelect";
 import CurrencySelect, { DEFAULT_CURRENCY } from "../currency/CurrencySelect";
+import SettingsButton from "./SettingsButton";
 
 /* --- [TASK] ---
 Changes on modal are only applied on SAVE
@@ -104,11 +105,9 @@ const SettingsSelector = (): JSX.Element => {
   const [currency, setSelectedCurrency] = React.useState<any>(DEFAULT_CURRENCY);
   const [language, setSelectedLanguage] = React.useState<any>(DEFAULT_LANGUAGE);
 
-  // Render Counter
-  const counter = useRef(0);
 
   // Actions
-  const handleOpen = () => {
+  const handleOpen = (): void => {
     setModalIsOpen(true);
   };
   const handleClose = () => {
@@ -121,26 +120,16 @@ const SettingsSelector = (): JSX.Element => {
     setModalIsOpen(false);
   };
 
-  const button = () => {
-    // Increase render count.
-    counter.current++;
-
-    // Log current render count.
-    console.log("Render count of button is: " + counter.current);
-
-    /* Button */
-    return (
-      <button onClick={handleOpen}>
-        {country.name} - ({currency} - {language})
-      </button>
-    );
-  };
-
+  const renderSettingsButton = useMemo(() => (
+    <SettingsButton handleOpen={handleOpen}
+        country={selectedCountry}
+        currency={selectedCurrency}
+        language={selectedLanguage} />
+  ), [selectedCountry, selectedCurrency, selectedLanguage])
   // Render
   return (
     <div>
-      {button()}
-
+      {renderSettingsButton}
       {/* Modal */}
       <Modal isOpen={modalIsOpen}>
         {/* Header */}

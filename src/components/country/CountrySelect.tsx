@@ -1,7 +1,7 @@
 import countries from "i18n-iso-countries";
 import { useRef, useState } from "react";
 import Select, { GroupBase, OptionProps } from "react-select";
-import { CountrySelectOptionInterface } from "../../types/country-types";
+import { Country, CountrySelectOptionInterface } from "../../types/country-types";
 import { CountryInput } from "./CountryInput";
 import { CountrySelectOption } from "./CountrySelectOption";
 
@@ -9,10 +9,7 @@ countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
 
 const COUNTRIES_VALUE_KEY = 0;
 const COUNTRIES_LABEL_KEY = 1;
-interface Country {
-  code: string;
-  name: string;
-}
+
 
 
 interface CountrySelectProps {
